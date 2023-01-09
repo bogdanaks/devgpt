@@ -9,8 +9,10 @@ export async function activate(context: vscode.ExtensionContext) {
   const config = vscode.workspace.getConfiguration("devgpt")
 
   const devGPT = new DevGPTProvider()
+
+  const apiKey = await context.secrets.get(OPENAI_API_KEY)
   devGPT.setSettings({
-    apiKey: config.get<string>("apiKey") || "",
+    apiKey: apiKey || "",
     model: config.get<string>("model") || "",
     maxTokens: config.get<number>("maxTokens"),
     temperature: config.get<number>("temperature"),
@@ -50,10 +52,13 @@ export async function activate(context: vscode.ExtensionContext) {
       commandHandler("promptPrefix.documentation")
     ),
     vscode.commands.registerCommand("devgpt.setApiKey", async () => {
-      await setApiKey(context)
+      const newApiKey = await setApiKey(context)
+      if (!newApiKey) return
+      devGPT.updateApiKey(newApiKey)
     }),
     vscode.commands.registerCommand("devgpt.removeApiKey", async () => {
       await context.secrets.delete(OPENAI_API_KEY)
+      devGPT.removeApiKey()
       vscode.window.showWarningMessage("Your API KEY was removed")
     })
   )

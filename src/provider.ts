@@ -56,6 +56,24 @@ export class DevGPTProvider implements vscode.TextDocumentContentProvider {
     this._apiConfiguration = new Configuration({ apiKey: settings.apiKey })
   }
 
+  public updateApiKey(apiKey: string) {
+    this._settings = {
+      ...this._settings,
+      apiKey,
+    }
+    this._apiConfiguration = new Configuration({ apiKey })
+    this._openai = new OpenAIApi(this._apiConfiguration)
+  }
+
+  public removeApiKey() {
+    this._settings = {
+      ...this._settings,
+      apiKey: "",
+    }
+    this._apiConfiguration = undefined
+    this._openai = undefined
+  }
+
   public async search(prompt: string) {
     const progressOptions = {
       location: vscode.ProgressLocation.Notification,
@@ -120,7 +138,7 @@ export class DevGPTProvider implements vscode.TextDocumentContentProvider {
         } catch (error: any) {
           let errMsg = ""
           if (error.response) {
-            errMsg = `${error.response.status} ${error.response.data}`
+            errMsg = `${error.response.status} ${error.response.data.error.message}`
           } else {
             errMsg = error.message
           }

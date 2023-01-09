@@ -17,6 +17,8 @@ export const setApiKey = async (context: vscode.ExtensionContext) => {
   await context.secrets.store(OPENAI_API_KEY, apiKey)
 
   vscode.window.showInformationMessage("API KEY successfully saved")
+
+  return apiKey
 }
 
 export const createPrompt = (question: string, selection?: string) => {
