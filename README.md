@@ -39,3 +39,8 @@ To use this extension, please install it from the VSCode marketplace
 2. Enter your API key and press Enter. Your key will be stored in a secret vault
 
 After completing these steps, the extension should be ready to use
+
+## Using the Extension
+
+<br />
+<img src="examples/example.png" alt="Selected from menu DevGPT"/>
