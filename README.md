@@ -44,3 +44,5 @@ After completing these steps, the extension should be ready to use
 
 <br />
 <img src="examples/example.png" alt="Selected from menu DevGPT"/>
+<br />
+<img src="examples/example2.png" alt="Result fromt DevGPT"/>
