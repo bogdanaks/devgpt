@@ -8,7 +8,7 @@
   "icon": "assets/logo.png",
   "galleryBanner": {
     "color": "#E7EDE9",
-    "theme": "dark"
+    "theme": "light"
   },
   "homepage": "https://github.com/bogdanaks/devgpt/blob/master/README.md",
   "bugs": {
