@@ -4,7 +4,7 @@
   "publisher": "bogdanaks",
   "description": "Revolutionize your programming with ChatGPT3 - the ultimate tool for increased efficiency, improved accuracy, and enhanced creativity in your work.",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "icon": "assets/logo.png",
   "galleryBanner": {
     "color": "#E7EDE9",
@@ -24,8 +24,8 @@
   },
   "categories": [
     "Data Science",
-		"Machine Learning",
-		"Programming Languages"
+    "Machine Learning",
+    "Programming Languages"
   ],
   "keywords": [
     "devgpt",
@@ -54,13 +54,13 @@
   "contributes": {
     "commands": [
       {
-				"command": "devgpt.setApiKey",
-				"title": "DevGPT: Set API KEY"
-			},
-			{
-				"command": "devgpt.removeApiKey",
-				"title": "DevGPT: Remove API KEY"
-			},
+        "command": "devgpt.setApiKey",
+        "title": "DevGPT: Set API KEY"
+      },
+      {
+        "command": "devgpt.removeApiKey",
+        "title": "DevGPT: Remove API KEY"
+      },
       {
         "command": "devgpt.ask",
         "title": "DevGPT: Ask something"
@@ -96,8 +96,8 @@
           "markdownDescription": "To enter your [API Key](https://beta.openai.com/account/api-keys) press cmd+shift+p and search for 'DevGPT: Set API KEY'",
           "order": 0,
           "enum": [
-						"OpenAI"
-					]
+            "OpenAI"
+          ]
         },
         "devgpt.model": {
           "type": "string",
