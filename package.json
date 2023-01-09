@@ -1,0 +1,224 @@
+{
+  "name": "devgpt",
+  "displayName": "DevGPT",
+  "publisher": "BogdanAksenov",
+  "description": "ChatGPT API inside VSCode",
+  "license": "MIT",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Data Science",
+		"Machine Learning",
+		"Programming Languages"
+  ],
+  "keywords": [
+    "devgpt",
+    "gpt3",
+    "chatgpt",
+    "openai",
+    "ai",
+    "copilot",
+    "explain",
+    "explain ",
+    "optimize",
+    "find bugs",
+    "refactor"
+  ],
+  "activationEvents": [
+    "onCommand:devgpt.setApiKey",
+    "onCommand:devgpt.removeApiKey",
+    "onCommand:devgpt.ask",
+    "onCommand:devgpt.explain",
+    "onCommand:devgpt.refactor",
+    "onCommand:devgpt.optimize",
+    "onCommand:devgpt.findProblems",
+    "onCommand:devgpt.documentation"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+				"command": "devgpt.setApiKey",
+				"title": "DevGPT: Set API KEY"
+			},
+			{
+				"command": "devgpt.removeApiKey",
+				"title": "DevGPT: Remove API KEY"
+			},
+      {
+        "command": "devgpt.ask",
+        "title": "DevGPT: Ask something"
+      },
+      {
+        "command": "devgpt.explain",
+        "title": "DevGPT: Explain selection"
+      },
+      {
+        "command": "devgpt.refactor",
+        "title": "DevGPT: Refactor selection"
+      },
+      {
+        "command": "devgpt.findProblems",
+        "title": "DevGPT: Find problems"
+      },
+      {
+        "command": "devgpt.optimize",
+        "title": "DevGPT: Optimize selection"
+      },
+      {
+        "command": "devgpt.documentation",
+        "title": "DevGPT: Write documentation"
+      }
+    ],
+    "configuration": {
+      "title": "DevGPT",
+      "type": "object",
+      "properties": {
+        "devgpt.openai": {
+          "type": "string",
+          "default": "OpenAI",
+          "markdownDescription": "To enter your [API Key](https://beta.openai.com/account/api-keys) press cmd+shift+p and search for 'DevGPT: Set API KEY'",
+          "order": 0,
+          "enum": [
+						"OpenAI"
+					]
+        },
+        "devgpt.model": {
+          "type": "string",
+          "enum": [
+            "text-davinci-003",
+            "text-curie-001",
+            "code-davinci-002",
+            "code-cushman-002"
+          ],
+          "default": "text-davinci-003",
+          "description": "Which GPT3 model to use",
+          "order": 1
+        },
+        "devgpt.maxTokens": {
+          "type": "number",
+          "default": 500,
+          "description": "Maximum number of tokens inside response per request",
+          "order": 2
+        },
+        "devgpt.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "description": "Temperature to use for the GPT3 (between 0 (conservative) and 1 (creative))",
+          "order": 3
+        },
+        "devgpt.promptPrefix.explain": {
+          "type": "string",
+          "default": "Explain what this code does: ",
+          "description": "The prompt prefix used for explaining the selected code",
+          "order": 4
+        },
+        "devgpt.promptPrefix.refactor": {
+          "type": "string",
+          "default": "Refactor this code and then explain what's changed: ",
+          "description": "The prompt prefix used for refactoring the selected code",
+          "order": 5
+        },
+        "devgpt.promptPrefix.findProblems": {
+          "type": "string",
+          "default": "Find problems with the following code, fix them and explain what was wrong (Do not change anything else, if there are no problems say so): ",
+          "description": "The prompt prefix used for finding problems in the selected code",
+          "order": 6
+        },
+        "devgpt.promptPrefix.optimize": {
+          "type": "string",
+          "default": "Optimize the following code if there is anything to improve, if not say so: ",
+          "description": "The prompt prefix used for optimizing the selected code",
+          "order": 7
+        },
+        "devgpt.promptPrefix.documentation": {
+          "type": "string",
+          "default": "Write documentation for the following code: ",
+          "description": "The prompt prefix used for writing documentation for the selected code",
+          "order": 8
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "devgpt.ask",
+          "when": "editorTextFocus",
+          "group": "devgpt-menu-group@1"
+        },
+        {
+          "command": "devgpt.explain",
+          "when": "editorHasSelection",
+          "group": "devgpt-menu-group@2"
+        },
+        {
+          "command": "devgpt.refactor",
+          "when": "editorHasSelection",
+          "group": "devgpt-menu-group@3"
+        },
+        {
+          "command": "devgpt.findProblems",
+          "when": "editorHasSelection",
+          "group": "devgpt-menu-group@4"
+        },
+        {
+          "command": "devgpt.optimize",
+          "when": "editorHasSelection",
+          "group": "devgpt-menu-group@5"
+        },
+        {
+          "command": "devgpt.documentation",
+          "when": "editorHasSelection",
+          "group": "devgpt-menu-group@6"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "devgpt.ask"
+        },
+        {
+          "command": "devgpt.explain",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "devgpt.refactor",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "devgpt.findProblems",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "devgpt.optimize",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "devgpt.documentation",
+          "when": "editorHasSelection"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "openai": "^3.1.0"
+  }
+}
