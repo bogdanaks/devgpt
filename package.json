@@ -2,11 +2,25 @@
   "name": "devgpt",
   "displayName": "DevGPT",
   "publisher": "BogdanAksenov",
-  "description": "ChatGPT API inside VSCode",
+  "description": "Revolutionize your programming with ChatGPT3 - the ultimate tool for increased efficiency, improved accuracy, and enhanced creativity in your work.",
   "license": "MIT",
   "version": "0.0.1",
+  "icon": "assets/logo.png",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
+  "homepage": "https://github.com/bogdanaks/devgpt/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/bogdanaks/devgpt/issues",
+    "email": "bogdanaks@bk.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bogdanaks/devgpt"
+  },
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.73.0"
   },
   "categories": [
     "Data Science",
